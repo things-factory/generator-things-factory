@@ -1,0 +1,16 @@
+{
+  "name": "@things-factory/<%= moduleName %>",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "things-factory": true,
+  "license": "MIT",
+  "author": "<%= username %>",
+  "scripts": {
+    "build:dev": "webpack --config ./node_modules/@things-factory/shell/webpack.config.dev.js",
+    "serve:dev": "webpack-dev-server --config ./node_modules/@things-factory/shell/webpack.config.dev.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@things-factory/shell": "*"
+  }
+}
