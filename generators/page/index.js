@@ -36,7 +36,8 @@ module.exports = class extends Generator {
       this.props.classifiedPageName = classname(props.pageName);
       this.props.fullModuleName = this.fs.readJSON(
         this.destinationPath("./package.json")
-      ).moduleName;
+      ).name;
+
       this.props.moduleName = this.props.fullModuleName.replace(
         "@things-factory/",
         ""
@@ -46,13 +47,18 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath("_page.js"),
-      this.destinationPath("src/pages/" + this.props.pageName + ".js")
+      this.destinationPath("src/pages/" + this.props.pageName + ".js"),
+      this.props
     );
   }
 
   install() {
-    this.installDependencies();
+    this.installDependencies({
+      npm: false,
+      bower: false,
+      yarn: true
+    });
   }
 };
