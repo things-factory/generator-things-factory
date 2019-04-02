@@ -6,18 +6,11 @@
 const Generator = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
-const path = require('path')
 const _ = require('lodash')
 
 module.exports = class extends Generator {
   prompting() {
-    this.log(
-      yosay(
-        'Welcome to the smashing ' +
-          chalk.red('generator-things-factory:module') +
-          ' generator!'
-      )
-    )
+    this.log(yosay('Welcome to the smashing ' + chalk.red('generator-things-factory:module') + ' generator!'))
 
     const prompts = [
       {
@@ -37,12 +30,8 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(props => {
       this.props = props
       this.props.camelCaseModuleName = _.camelCase(props.moduleName)
-      this.props.upperSnakeCaseModuleName = _.snakeCase(
-        props.moduleName
-      ).toUpperCase()
-      this.props.classifiedModuleName = _.upperFirst(
-        _.camelCase(props.moduleName)
-      )
+      this.props.upperSnakeCaseModuleName = _.snakeCase(props.moduleName).toUpperCase()
+      this.props.classifiedModuleName = _.upperFirst(_.camelCase(props.moduleName))
     })
   }
 
@@ -50,20 +39,12 @@ module.exports = class extends Generator {
     var tpl = this.props
 
     this.fs.copyTpl(
-      [
-        this.templatePath() + '/**',
-        this.templatePath() + '/**/.*',
-        '!**/{.DS_Store,_*}/**'
-      ],
+      [this.templatePath() + '/**', this.templatePath() + '/**/.*', '!**/{.DS_Store,_*}/**'],
       this.destinationPath(),
       tpl
     )
 
-    this.fs.copyTpl(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore'),
-      tpl
-    )
+    this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'), tpl)
   }
 
   install() {

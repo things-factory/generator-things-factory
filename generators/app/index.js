@@ -6,26 +6,10 @@
 const Generator = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
-const path = require('path')
-
-function classname(str) {
-  return str
-    .replace(/-/g, ' ')
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
-      return letter.toUpperCase()
-    })
-    .replace(/\s+/g, '')
-}
 
 module.exports = class extends Generator {
   prompting() {
-    this.log(
-      yosay(
-        'Welcome to the smashing ' +
-          chalk.red('generator-things-factory:app') +
-          ' generator!'
-      )
-    )
+    this.log(yosay('Welcome to the smashing ' + chalk.red('generator-things-factory:app') + ' generator!'))
 
     const prompts = [
       {
@@ -51,20 +35,12 @@ module.exports = class extends Generator {
     var tpl = this.props
 
     this.fs.copyTpl(
-      [
-        this.templatePath() + '/**',
-        this.templatePath() + '/**/.*',
-        '!**/{.DS_Store,_*}/**'
-      ],
+      [this.templatePath() + '/**', this.templatePath() + '/**/.*', '!**/{.DS_Store,_*}/**'],
       this.destinationPath(),
       tpl
     )
 
-    this.fs.copyTpl(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore'),
-      tpl
-    )
+    this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'), tpl)
   }
 
   install() {
