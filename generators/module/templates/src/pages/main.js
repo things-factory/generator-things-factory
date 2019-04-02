@@ -7,7 +7,7 @@ import logo from '../../assets/images/hatiolab-logo.png'
 class <%= classifiedModuleName %>Main extends connect(store)(LitElement) {
   static get properties() {
     return {
-      <%= moduleName %>: String
+      <%= camelCaseModuleName %>: String
     }
   }
   render() {
@@ -20,7 +20,7 @@ class <%= classifiedModuleName %>Main extends connect(store)(LitElement) {
   }
 
   stateChanged(state) {
-    this.<%= moduleName %> = state.<%= moduleName %>.state_main
+    this.<%= camelCaseModuleName %> = state.<%= camelCaseModuleName %>.state_main
   }
 }
 

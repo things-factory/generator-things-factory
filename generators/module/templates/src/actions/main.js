@@ -1,1 +1,1 @@
-export const UPDATE_<%= upperCaseModuleName %> = 'UPDATE_<%= upperCaseModuleName %>'
+export const UPDATE_<%= upperSnakeCaseModuleName %> = 'UPDATE_<%= upperSnakeCaseModuleName %>'

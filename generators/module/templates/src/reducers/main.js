@@ -1,4 +1,4 @@
-import { UPDATE_<%= upperCaseModuleName %> } from '../actions/main'
+import { UPDATE_<%= upperSnakeCaseModuleName %> } from '../actions/main'
 
 const INITIAL_STATE = {
   state_main: 'ABC'
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 const main = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case UPDATE_<%= upperCaseModuleName %>:
+    case UPDATE_<%= upperSnakeCaseModuleName %>:
       return { ...state }
 
     default:
