@@ -1,10 +1,10 @@
-import { html, LitElement } from 'lit-element'
+import { html } from 'lit-element'
 import { connect } from 'pwa-helpers/connect-mixin.js'
-import { store } from '@things-factory/shell'
+import { store, PageView } from '@things-factory/shell'
 
 import logo from '../../assets/images/hatiolab-logo.png'
 
-class <%= classifiedModuleName %>Main extends connect(store)(LitElement) {
+class <%= classifiedModuleName %>Main extends connect(store)(PageView) {
   static get properties() {
     return {
       <%= camelCaseModuleName %>: String
