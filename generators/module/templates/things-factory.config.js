@@ -6,7 +6,7 @@ export default {
   routes: [
     {
       tagname: '<%= moduleName %>-main',
-      pageName: '<%= moduleName %>-main'
+      page: '<%= moduleName %>-main'
     }
   ],
   bootstrap
