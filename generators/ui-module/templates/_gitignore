@@ -2,5 +2,6 @@ dist-client/
 node_modules/
 yarn*.*
 package-lock.json
+db.sqlite
 .DS_Store
 .vscode
