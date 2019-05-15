@@ -1,16 +1,23 @@
 {
   "name": "@things-factory/<%= moduleName %>",
   "version": "1.0.0",
-  "main": "src/index.js",
-  "browser": "src/index.js",
+  "main": "dist-server/index.js",
+  "browser": "client/index.js",
   "things-factory": true,
   "license": "MIT",
   "author": "<%= username %>",
   "scripts": {
     "serve": "things-factory",
-    "serve:dev": "things-factory-dev",
+    "serve:dev": "npm run clean && tsc && things-factory-dev",
     "build:client": "webpack --config node_modules/@things-factory/shell/webpack.config.js",
-    "migration": "things-factory-migration"
+    "build:server": "tsc",
+    "clean": "rm -rf dist-server dist-client",
+    "prepublish": "npm run clean && npm run build:server",
+    "migration": "things-factory-migration",
+    "migration:create": "node ./node_modules/typeorm/cli.js migration:create",
+    "migration:generate": "node ./node_modules/typeorm/cli.js migration:generate",
+    "migration:run": "node ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "node ./node_modules/typeorm/cli.js migration:revert"
   },
   "dependencies": {
     "@things-factory/layout-base": "*",
