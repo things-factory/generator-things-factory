@@ -4,7 +4,7 @@ export const CommonCode = gql`
   type CommonCode {
     id: String
     name: String
-    domainId: String
+    domain: Domian
     description: String
     commonCodeDetails: CommonCodeDetail
   }
