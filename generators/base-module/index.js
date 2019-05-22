@@ -10,13 +10,13 @@ const _ = require('lodash')
 
 module.exports = class extends Generator {
   prompting() {
-    this.log(yosay('Welcome to the smashing ' + chalk.red('generator-things-factory:module') + ' generator!'))
+    this.log(yosay('Welcome to the smashing ' + chalk.red('generator-things-factory:base-module') + ' generator!'))
 
     const prompts = [
       {
         type: 'input',
         name: 'moduleName',
-        message: 'Your things-factory module name?',
+        message: 'Your things-factory base-module name?',
         default: this.appname.replace(/ /g, '-')
       },
       {

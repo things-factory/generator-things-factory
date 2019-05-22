@@ -1,6 +1,6 @@
 {
   "name": "generator-things-factory",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "",
   "homepage": "",
   "author": {
@@ -35,6 +35,7 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.1.0",
+    "pluralize": "^7.0.0",
     "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },

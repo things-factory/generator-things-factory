@@ -16,7 +16,7 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'moduleName',
-        message: 'Your things-factory module name?',
+        message: 'Your things-factory ui-module name?',
         default: this.appname.replace(/ /g, '-')
       },
       {
