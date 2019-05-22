@@ -1,9 +1,9 @@
-import { <%= camelCaseResourceName %>Resolver } from './<%= moduleName %>'
-import { <%= pluralCamelCaseResourceName %>Resolver } from './<%= moduleName %>s'
+import { <%= camelCaseResourceName %>Resolver } from './<%= resourceName %>'
+import { <%= pluralCamelCaseResourceName %>Resolver } from './<%= resourceName %>s'
 
-import { update<%= classifiedResourceName %> } from './update-<%= moduleName %>'
-import { create<%= classifiedResourceName %> } from './create-<%= moduleName %>'
-import { delete<%= classifiedResourceName %> } from './delete-<%= moduleName %>'
+import { update<%= classifiedResourceName %> } from './update-<%= resourceName %>'
+import { create<%= classifiedResourceName %> } from './create-<%= resourceName %>'
+import { delete<%= classifiedResourceName %> } from './delete-<%= resourceName %>'
 
 export const Query = {
   ...<%= pluralCamelCaseResourceName %>Resolver,

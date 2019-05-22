@@ -17,8 +17,7 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'resourceName',
-        message: 'Your things-factory resource name?',
-        default: this.appname.toLowerCase().replace(/ /g, '-')
+        message: 'Your things-factory resource name?'
       }
     ]
 
@@ -26,7 +25,7 @@ module.exports = class extends Generator {
       this.props = props
       this.props.pluralResourceName = pluralize(props.resourceName)
       this.props.camelCaseResourceName = _.camelCase(props.resourceName)
-      this.props.pluralCamelCaseRsourceName = _.camelCase(props.pluralResourceName)
+      this.props.pluralCamelCaseResourceName = _.camelCase(props.pluralResourceName)
       this.props.upperSnakeCaseResourceName = _.snakeCase(props.resourceName).toUpperCase()
       this.props.classifiedResourceName = _.upperFirst(_.camelCase(props.resourceName))
       this.props.timestamped = String(Date.now())
@@ -69,7 +68,7 @@ module.exports = class extends Generator {
     )
 
     this.fs.copyTpl(
-      this.templatePath('server/graphql/resolvers/_resource/_update-resources.ts'),
+      this.templatePath('server/graphql/resolvers/_resource/_update-resource.ts'),
       this.destinationPath('server/graphql/resolvers/' + resourceName + '/update-' + pluralResourceName + '.ts'),
       this.props
     )
