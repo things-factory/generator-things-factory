@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-koa'
 
-export const CommonCodePatch = gql`
-  input CommonCodePatch {
+export const <%= classifiedResourceName %>Patch = gql`
+  input <%= classifiedResourceName %>Patch {
     name: String
     description: String
   }

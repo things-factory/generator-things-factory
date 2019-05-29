@@ -33,7 +33,7 @@ module.exports = class extends Generator {
   writing() {
     this.fs.copyTpl(
       this.templatePath('_page.js'),
-      this.destinationPath('src/pages/' + this.props.pageName + '.js'),
+      this.destinationPath('client/pages/' + this.props.pageName + '.js'),
       this.props
     )
   }

@@ -1,12 +1,5 @@
-import { CommonCode } from './common-code'
-import { CommonCodeDetail } from './common-code-detail'
+// import { Xxx } from './xxx'
 
-export const entities = [
-  CommonCode,
-  CommonCodeDetail
-]
+export const entities = []
 
-export {
-  CommonCode,
-  CommonCodeDetail
-}
+export {}

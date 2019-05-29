@@ -1,10 +1,10 @@
 import { html, LitElement } from 'lit-element'
 import { connect } from 'pwa-helpers/connect-mixin.js'
-import { store } from '@things-factory/shell'
+import { store, PageView } from '@things-factory/shell'
 
 import logo from '../../assets/images/hatiolab-logo.png'
 
-class <%= classifiedModuleName %><%= classifiedPageName %> extends connect(store)(LitElement) {
+class <%= classifiedPageName %> extends connect(store)(PageView) {
   static get properties() {
     return {
       <%= camelCasePageName %>: String
@@ -13,7 +13,7 @@ class <%= classifiedModuleName %><%= classifiedPageName %> extends connect(store
   render() {
     return html`
       <section>
-        <h2><%= moduleName %>-<%= pageName %></h2>
+        <h2><%= pageName %></h2>
         <img src=${logo}></img>
       </section>
     `
@@ -24,4 +24,4 @@ class <%= classifiedModuleName %><%= classifiedPageName %> extends connect(store
   }
 }
 
-window.customElements.define('<%= moduleName %>-<%= pageName %>', <%= classifiedModuleName %><%= classifiedPageName %>)
+window.customElements.define('<%= pageName %>', <%= classifiedPageName %>)

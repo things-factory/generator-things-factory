@@ -8,6 +8,17 @@ const chalk = require('chalk')
 const yosay = require('yosay')
 const pluralize = require('pluralize')
 const _ = require('lodash')
+const babylon = require('babylon')
+const traverse = require('babel-traverse').default
+const types = require('babel-types')
+const generate = require('babel-generator').default
+
+const isImportDeclaration = path =>
+  types.isImportDeclaration(path.node) ||
+  types.isImportSpecifier(path.parent) ||
+  types.isImportDeclaration(path.parent) ||
+  types.isImportSpecifier(path.parent) ||
+  types.isImportDefaultSpecifier(path.parent)
 
 module.exports = class extends Generator {
   prompting() {
@@ -33,7 +44,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    var { resourceName, classifiedResourceName, pluralResourceName } = this.props
+    var { resourceName, classifiedResourceName, pluralResourceName, timestamped } = this.props
 
     /* entities folder */
     this.fs.copyTpl(
@@ -69,7 +80,7 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath('server/graphql/resolvers/_resource/_update-resource.ts'),
-      this.destinationPath('server/graphql/resolvers/' + resourceName + '/update-' + pluralResourceName + '.ts'),
+      this.destinationPath('server/graphql/resolvers/' + resourceName + '/update-' + resourceName + '.ts'),
       this.props
     )
 
@@ -107,9 +118,73 @@ module.exports = class extends Generator {
     /* migrations */
     this.fs.copyTpl(
       this.templatePath('server/migrations/_timestamped-SeedResource.ts'),
-      this.destinationPath('server/migrations/' + String(Date.now()) + '-Seed' + classifiedResourceName + '.ts'),
+      this.destinationPath('server/migrations/' + timestamped + '-Seed' + classifiedResourceName + '.ts'),
       this.props
     )
+  }
+
+  writingEntitiesIndex() {
+    var tpl = this.props
+
+    // TODO create index.ts if not exist 'index.ts'
+    const source = this.fs.read(this.destinationPath('server/entities/index.ts'))
+
+    const ast = babylon.parse(source, {
+      sourceType: 'module'
+    })
+
+    const declaration = types.importDeclaration(
+      [types.importSpecifier()][types.importDefaultSpecifier(types.identifier(tpl.classifiedResourceName))],
+      types.stringLiteral(`./${tpl.resourceName}`)
+    )
+
+    let lastImport = null
+    let firstExport = null
+    let doneImport = false
+    let doneExport = false
+
+    traverse(ast, {
+      enter(path) {
+        if (!doneImport) {
+          if (lastImport && !isImportDeclaration(path)) {
+            lastImport.insertAfter(declaration)
+            doneImport = true
+          } else if (firstExport) {
+            firstExport.insertBefore(declaration)
+            doneImport = true
+          }
+        }
+      },
+
+      ImportDeclaration(path) {
+        lastImport = path
+      },
+
+      ExportDefaultDeclaration(path) {
+        if (!firstExport) {
+          firstExport = path
+        }
+      },
+
+      ArrayExpression(path) {
+        if (!doneExport && firstExport) {
+          path.node.elements.push(types.identifier(tpl.classifiedResourceName))
+          doneExport = true
+        }
+      }
+    })
+
+    // Generate actually source code from modified AST
+    const { code } = generate(
+      ast,
+      {
+        /* Options */
+      },
+      source
+    )
+
+    // Write source back to file
+    this.fs.write(this.destinationPath('server/entities/index.ts'), code)
   }
 
   install() {

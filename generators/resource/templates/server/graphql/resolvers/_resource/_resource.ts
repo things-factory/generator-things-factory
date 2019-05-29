@@ -6,10 +6,7 @@ export const <%= camelCaseResourceName %>Resolver = {
     const repository = getRepository(<%= classifiedResourceName %>)
 
     return await repository.findOne(
-      { id },
-      {
-        relations: ['<%= camelCaseResourceName %>Details']
-      }
+      { id }
     )
   }
 }

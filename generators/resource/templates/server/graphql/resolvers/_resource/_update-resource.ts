@@ -5,10 +5,10 @@ export const update<%= classifiedResourceName %> = {
   async update<%= classifiedResourceName %>(_, { id, patch }) {
     const repository = getRepository(<%= classifiedResourceName %>)
 
-    const commonCode = await repository.findOne({ id })
+    const <%= camelCaseResourceName %> = await repository.findOne({ id })
 
     return await repository.save({
-      ...commonCode,
+      ...<%= camelCaseResourceName %>,
       ...patch
     })
   }

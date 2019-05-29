@@ -9,7 +9,7 @@ const SEED = [
   }
 ]
 
-export class Seed<%= classifiedResourceName %>1556863924822 implements MigrationInterface {
+export class Seed<%= classifiedResourceName %><%= timestamped %> implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
     const repository = getRepository(<%= classifiedResourceName %>)
     const domainRepository = getRepository(Domain)
