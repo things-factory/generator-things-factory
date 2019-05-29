@@ -23,7 +23,6 @@
     "migration:revert": "node ./node_modules/typeorm/cli.js migration:revert"
   },
   "dependencies": {
-    "@things-factory/layout-base": "*",
     "@things-factory/shell": "*"
   },
   "devDependencies": {}
