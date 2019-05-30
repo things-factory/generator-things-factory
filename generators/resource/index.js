@@ -123,69 +123,69 @@ module.exports = class extends Generator {
     )
   }
 
-  writingEntitiesIndex() {
-    var tpl = this.props
+  // writingEntitiesIndex() {
+  //   var tpl = this.props
 
-    // TODO create index.ts if not exist 'index.ts'
-    const source = this.fs.read(this.destinationPath('server/entities/index.ts'))
+  //   // TODO create index.ts if not exist 'index.ts'
+  //   const source = this.fs.read(this.destinationPath('server/entities/index.ts'))
 
-    const ast = babylon.parse(source, {
-      sourceType: 'module'
-    })
+  //   const ast = babylon.parse(source, {
+  //     sourceType: 'module'
+  //   })
 
-    const declaration = types.importDeclaration(
-      [types.importSpecifier()][types.importDefaultSpecifier(types.identifier(tpl.classifiedResourceName))],
-      types.stringLiteral(`./${tpl.resourceName}`)
-    )
+  //   const declaration = types.importDeclaration(
+  //     [types.importSpecifier()][types.importDefaultSpecifier(types.identifier(tpl.classifiedResourceName))],
+  //     types.stringLiteral(`./${tpl.resourceName}`)
+  //   )
 
-    let lastImport = null
-    let firstExport = null
-    let doneImport = false
-    let doneExport = false
+  //   let lastImport = null
+  //   let firstExport = null
+  //   let doneImport = false
+  //   let doneExport = false
 
-    traverse(ast, {
-      enter(path) {
-        if (!doneImport) {
-          if (lastImport && !isImportDeclaration(path)) {
-            lastImport.insertAfter(declaration)
-            doneImport = true
-          } else if (firstExport) {
-            firstExport.insertBefore(declaration)
-            doneImport = true
-          }
-        }
-      },
+  //   traverse(ast, {
+  //     enter(path) {
+  //       if (!doneImport) {
+  //         if (lastImport && !isImportDeclaration(path)) {
+  //           lastImport.insertAfter(declaration)
+  //           doneImport = true
+  //         } else if (firstExport) {
+  //           firstExport.insertBefore(declaration)
+  //           doneImport = true
+  //         }
+  //       }
+  //     },
 
-      ImportDeclaration(path) {
-        lastImport = path
-      },
+  //     ImportDeclaration(path) {
+  //       lastImport = path
+  //     },
 
-      ExportDefaultDeclaration(path) {
-        if (!firstExport) {
-          firstExport = path
-        }
-      },
+  //     ExportDefaultDeclaration(path) {
+  //       if (!firstExport) {
+  //         firstExport = path
+  //       }
+  //     },
 
-      ArrayExpression(path) {
-        if (!doneExport && firstExport) {
-          path.node.elements.push(types.identifier(tpl.classifiedResourceName))
-          doneExport = true
-        }
-      }
-    })
+  //     ArrayExpression(path) {
+  //       if (!doneExport && firstExport) {
+  //         path.node.elements.push(types.identifier(tpl.classifiedResourceName))
+  //         doneExport = true
+  //       }
+  //     }
+  //   })
 
-    // Generate actually source code from modified AST
-    const { code } = generate(
-      ast,
-      {
-        /* Options */
-      },
-      source
-    )
+  //   // Generate actually source code from modified AST
+  //   const { code } = generate(
+  //     ast,
+  //     {
+  //       /* Options */
+  //     },
+  //     source
+  //   )
 
-    // Write source back to file
-    this.fs.write(this.destinationPath('server/entities/index.ts'), code)
-  }
+  //   // Write source back to file
+  //   this.fs.write(this.destinationPath('server/entities/index.ts'), code)
+  // }
 
   install() {
     this.installDependencies({
