@@ -28,4 +28,4 @@ export const Query = `
   <%= camelCaseResourceName %>(id: String!): <%= classifiedResourceName %>
 `
 
-export const Types = [Filter, Pagination, Sorting, <%= classifiedResourceName %>, New<%= classifiedResourceName %>, <%= classifiedResourceName %>Patch]
+export const Types = [Filter, Pagination, Sorting, <%= classifiedResourceName %>, New<%= classifiedResourceName %>, <%= classifiedResourceName %>Patch, <%= classifiedResourceName %>List]
