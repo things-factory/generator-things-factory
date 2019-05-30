@@ -115,6 +115,12 @@ module.exports = class extends Generator {
       this.props
     )
 
+    this.fs.copyTpl(
+      this.templatePath('server/graphql/types/_resource/_resource-list.ts'),
+      this.destinationPath('server/graphql/types/' + resourceName + '/' + resourceName + '-list.ts'),
+      this.props
+    )
+
     /* migrations */
     this.fs.copyTpl(
       this.templatePath('server/migrations/_timestamped-SeedResource.ts'),
