@@ -10,6 +10,7 @@ class <%= classifiedPageName %> extends connect(store)(PageView) {
       <%= camelCasePageName %>: String
     }
   }
+  
   render() {
     return html`
       <section>
