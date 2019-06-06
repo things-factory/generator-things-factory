@@ -1,5 +1,6 @@
 export * from './entities'
 export * from './migrations'
 export * from './graphql'
-// import './routes'
-// import './middlewares'
+
+import './middlewares'
+import './routes'
