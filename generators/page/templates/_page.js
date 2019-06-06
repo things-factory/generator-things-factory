@@ -20,7 +20,6 @@ class <%= classifiedPageName %> extends connect(store)(PageView) {
   }
 
   stateChanged(state) {
-    this.<%= camelCasePageName %> = state.<%= camelCaseModuleName %>.<%= camelCasePageName %>
   }
 }
 
