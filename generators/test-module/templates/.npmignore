@@ -1,6 +1,5 @@
 node_modules/
 dist-client/
-dist-server/
 .git
 .vscode
 .editorconfig

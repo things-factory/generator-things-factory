@@ -4,4 +4,3 @@ node_modules/
 .editorconfig
 .prettierrc
 dist-client/
-dist-server/
