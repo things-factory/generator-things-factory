@@ -1,9 +1,10 @@
-import { Entity, Index, Column, OneToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { Domain, DomainBaseEntity } from '@things-factory/shell'
+import { CreateDateColumn, UpdateDateColumn, Entity, Index, Column, OneToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { Domain } from '@things-factory/shell'
+import { User } from '@things-factory/user-base'
 
 @Entity('<%= pluralResourceName %>')
 @Index('ix_<%= resourceName %>_0', (<%= camelCaseResourceName %>: <%= classifiedResourceName %>) => [<%= camelCaseResourceName %>.domain, <%= camelCaseResourceName %>.name], { unique: true })
-export class <%= classifiedResourceName %> extends DomainBaseEntity {
+export class <%= classifiedResourceName %> {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
@@ -17,4 +18,16 @@ export class <%= classifiedResourceName %> extends DomainBaseEntity {
     nullable: true
   })
   description: string
+
+  @CreateDateColumn()
+  createdAt: Date
+  
+  @UpdateDateColumn()
+  updatedAt: Date
+  
+  @ManyToOne(type => User)
+  creator: User
+  
+  @ManyToOne(type => User)
+  updater: User  
 }
