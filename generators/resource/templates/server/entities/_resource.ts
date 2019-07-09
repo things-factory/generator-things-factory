@@ -1,6 +1,6 @@
 import { CreateDateColumn, UpdateDateColumn, Entity, Index, Column, OneToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { Domain } from '@things-factory/shell'
-import { User } from '@things-factory/user-base'
+import { User } from '@things-factory/auth-base'
 
 @Entity('<%= pluralResourceName %>')
 @Index('ix_<%= resourceName %>_0', (<%= camelCaseResourceName %>: <%= classifiedResourceName %>) => [<%= camelCaseResourceName %>.domain, <%= camelCaseResourceName %>.name], { unique: true })
