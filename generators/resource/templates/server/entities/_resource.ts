@@ -25,9 +25,13 @@ export class <%= classifiedResourceName %> {
   @UpdateDateColumn()
   updatedAt: Date
   
-  @ManyToOne(type => User)
+  @ManyToOne(type => User, {
+    nullable: true
+  })
   creator: User
   
-  @ManyToOne(type => User)
+  @ManyToOne(type => User, {
+    nullable: true
+  })
   updater: User  
 }
