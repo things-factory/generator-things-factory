@@ -17,10 +17,6 @@ export const Mutation = `
   delete<%= classifiedResourceName %> (
     id: String!
   ): <%= classifiedResourceName %>
-
-  publish<%= classifiedResourceName %> (
-    id: String!
-  ): <%= classifiedResourceName %>
 `
 
 export const Query = `
