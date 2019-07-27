@@ -1,10 +1,10 @@
 import { UPDATE_<%= upperSnakeCaseModuleName %> } from '../actions/main'
 
 const INITIAL_STATE = {
-  state_main: 'ABC'
+  <%= camelCaseModuleName %>: 'ABC'
 }
 
-const main = (state = INITIAL_STATE, action) => {
+const <%= camelCaseModuleName %> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UPDATE_<%= upperSnakeCaseModuleName %>:
       return { ...state }
@@ -14,4 +14,4 @@ const main = (state = INITIAL_STATE, action) => {
   }
 }
 
-export default main
+export default <%= camelCaseModuleName %>
