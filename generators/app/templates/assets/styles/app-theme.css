@@ -40,7 +40,6 @@ body {
   --header-bar-color: #fff;
   --header-bar-height: 45px;
   --nav-bar-background-color: var(--primary-color);
-  --context-toolbar-height: 50px;
 
   --group-bar-background-color: var(--primary-color);
   --group-bar-textbutton: 16px/32px var(--theme-font);
@@ -63,22 +62,34 @@ body {
   --menu-tree-grouplevel-border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   --menu-tree-grouplevel-active-border-left: 3px solid var(--primary-color);
   --menu-tree-focus-color: #fff;
+  --menu-tree-favorite-color: var(--menu-tree-toplevel-color);
 
   --context-toolbar-background-color: var(--main-section-background-color);
   --context-toolbar-button-background-color: #fff;
   --context-toolbar-border: 1px solid rgba(57, 78, 100, 0.5);
   --context-toolbar-border-hover: 1px solid var(--primary-color);
   --context-toolbar-button-height: 36px;
+  --context-toolbar-button-margin: 5px 0;
   --context-toolbar-button-padding: 0 9px;
   --context-toolbar-button: normal 13px var(--theme-font);
   --context-toolbar-button-color: var(--secondary-color);
   --context-toolbar-iconbutton-color: var(--primary-text-color);
   --context-toolbar-iconbutton-size: 16px;
-  --context-toolbar-function-iconbutton-background-color: var(--focus-color);
+  --context-toolbar-function-button-height: 34px;
+  --context-toolbar-function-button-radius: 5px;
+  --context-toolbar-function-button-background-color: #446281;
+  --context-toolbar-function-button-hover-background-color: var(--primary-color);
+  --context-toolbar-function-iconbutton-size: 28px;
   --context-toolbar-function-iconbutton-color: var(--primary-background-color);
+  --context-toolbar-function-button-lineheight: 36px;
+  --context-toolbar-function-button-color: #fff;
+  --context-toolbar-function-button-padding: 0 10px;
+  --context-toolbar-function-button-border: 1px solid rgba(0, 0, 0, 0.1);
   --context-toolbar-list-background-color: var(--primary-background-color);
   --context-toolbar-list-text: bold 18px var(--theme-font);
   --context-toolbar-list-icon-size: var(--icon-default-size);
+  --context-toolbar-side-padding: 15px;
+  --context-toolbar-shadow-line: none;
 
   --context-ui-background-color: rgba(40, 54, 68, 0.9);
   --context-ui-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
@@ -153,6 +164,13 @@ body {
   /* datagrid style */
   --grist-background-color: var(--main-section-background-color);
   --grist-padding: 15px;
+  --grist-title-margin: 0 15px;
+  --grist-title-border: none;
+  --grist-title-color: var(--secondary-color);
+  --grist-title-icon-color: var(--primary-color);
+  --grist-title-icon-margin: 0 3px 2px 0;
+  --grist-title-icon-size: 14px;
+  --grist-title-with-grid-padding: 0;
   --grid-header-background-color: rgba(18, 105, 105, 0.05);
   --grid-header-border-color: rgba(18, 105, 105, 0.3);
   --grid-record-background-color: #fff;
@@ -174,7 +192,26 @@ body {
   --grist-object-editor-font: normal 1em var(--theme-font);
   --grist-object-editor-color: var(--secondary-color);
 
+  --data-list-background-color: var(--main-section-background-color);
+  --data-list-item-padding: 5px 15px;
+  --data-list-item-border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  --data-list-item-name-font: bold 1em/1em var(--theme-font);
+  --data-list-item-name-color: var(--secondary-color);
+  --data-list-item-disc-font: normal 0.8em/0.8em var(--theme-font);
+  --data-list-item-disc-color: var(--secondary-text-color);
+  --data-list-item-etc-font: normal 0.7em/0.7em var(--theme-font);
+  --data-list-item-etc-color: #585858;
+
   /* button style */
+  --button-background-color: var(--secondary-color);
+  --button-active-background-color: var(--primary-color);
+  --button-margin: 10px 2px;
+  --button-height: 28px;
+  --button-color: #fff;
+  --button-font: normal 13px var(--theme-font);
+  --button-radius: 5px;
+  --button-border: 1px solid transparent;
+  --button-active-border: 1px solid rgba(0, 0, 0, 0.2);
 
   /* chart style */
 
@@ -244,6 +281,7 @@ body {
   --profile-brand-width: 150px;
   --profile-brand-height: 45px;
   --profile-brand-padding: 30px auto 20px auto;
+  --profile-wrap-max-width: 550px;
 }
 
 @media only screen and (max-width: 460px) {
@@ -251,11 +289,20 @@ body {
     --grist-padding: 0;
 
     --context-toolbar-button: normal 9px var(--theme-font);
-    --context-toolbar-iconbutton-size: 32px;
+    --context-toolbar-button-height: 50px;
+    --context-toolbar-iconbutton-size: 30px;
     --context-toolbar-border: none;
     --context-toolbar-border-hover: none;
     --context-toolbar-iconbutton-display: block;
     --context-toolbar-iconbutton-margin: -2px;
     --context-toolbar-button-background-color: transparent;
+    --context-toolbar-button-margin: 0;
+    --context-toolbar-function-button-height: 50px;
+    --context-toolbar-function-button-lineheight: 49px;
+    --context-toolbar-function-button-radius: 0;
+    --context-toolbar-side-padding: 0;
+    --context-toolbar-shadow-line: inset 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+
+    --profile-wrap-max-width: 85vw;
   }
 }
