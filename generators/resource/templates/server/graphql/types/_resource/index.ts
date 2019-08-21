@@ -2,7 +2,6 @@ import { <%= classifiedResourceName %> } from './<%= resourceName %>'
 import { New<%= classifiedResourceName %> } from './new-<%= resourceName %>'
 import { <%= classifiedResourceName %>Patch } from './<%= resourceName %>-patch'
 import { <%= classifiedResourceName %>List } from './<%= resourceName %>-list'
-import { Filter, Pagination, Sorting } from '@things-factory/shell'
 
 export const Mutation = `
   create<%= classifiedResourceName %> (
@@ -24,4 +23,4 @@ export const Query = `
   <%= camelCaseResourceName %>(id: String!): <%= classifiedResourceName %>
 `
 
-export const Types = [Filter, Pagination, Sorting, <%= classifiedResourceName %>, New<%= classifiedResourceName %>, <%= classifiedResourceName %>Patch, <%= classifiedResourceName %>List]
+export const Types = [<%= classifiedResourceName %>, New<%= classifiedResourceName %>, <%= classifiedResourceName %>Patch, <%= classifiedResourceName %>List]
