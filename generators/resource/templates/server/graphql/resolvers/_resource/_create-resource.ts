@@ -8,7 +8,6 @@ export const create<%= classifiedResourceName %> = {
       creator: context.state.user,
       updater: context.state.user,
       ...<%= camelCaseResourceName %>
-
     })
   }
 }

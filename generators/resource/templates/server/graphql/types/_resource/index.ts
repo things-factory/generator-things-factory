@@ -9,13 +9,13 @@ export const Mutation = `
   ): <%= classifiedResourceName %>
 
   update<%= classifiedResourceName %> (
-    id: String!
+    name: String!
     patch: <%= classifiedResourceName %>Patch!
   ): <%= classifiedResourceName %>
 
   delete<%= classifiedResourceName %> (
-    id: String!
-  ): <%= classifiedResourceName %>
+    name: String!
+  ): Boolean
 `
 
 export const Query = `
