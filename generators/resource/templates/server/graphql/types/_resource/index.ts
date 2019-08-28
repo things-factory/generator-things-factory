@@ -20,7 +20,7 @@ export const Mutation = `
 
 export const Query = `
   <%= pluralCamelCaseResourceName %>(filters: [Filter], pagination: Pagination, sortings: [Sorting]): <%= classifiedResourceName %>List
-  <%= camelCaseResourceName %>(id: String!): <%= classifiedResourceName %>
+  <%= camelCaseResourceName %>(name: String!): <%= classifiedResourceName %>
 `
 
 export const Types = [<%= classifiedResourceName %>, New<%= classifiedResourceName %>, <%= classifiedResourceName %>Patch, <%= classifiedResourceName %>List]

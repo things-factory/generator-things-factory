@@ -6,7 +6,11 @@ export const <%= pluralCamelCaseResourceName %>Resolver = {
   async <%= pluralCamelCaseResourceName %>(_: any, params: ListParam, context: any) {
     const queryBuilder = getRepository(<%= classifiedResourceName %>).createQueryBuilder()
     buildQuery(queryBuilder, params, context)
-    const [items, total] = await queryBuilder.getManyAndCount()
+    const [items, total] = await queryBuilder
+      .leftJoinAndSelect('<%= classifiedResourceName %>.domain', 'Domain')
+      .leftJoinAndSelect('<%= classifiedResourceName %>.creator', 'Creator')
+      .leftJoinAndSelect('<%= classifiedResourceName %>.updater', 'Updater')
+      .getManyAndCount()
 
     return { items, total }
   }
