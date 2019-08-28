@@ -9,7 +9,7 @@ export const update<%= classifiedResourceName %> = {
     return await repository.save({
       ...<%= camelCaseResourceName %>,
       ...patch,
-      updaterId: context.state.user.name
+      updater: context.state.user
     })
   }
 }
