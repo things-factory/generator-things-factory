@@ -5,7 +5,7 @@ export const update<%= classifiedResourceName %> = {
   async update<%= classifiedResourceName %>(_: any, { name, patch }, context: any) {
     const repository = getRepository(<%= classifiedResourceName %>)
     const <%= camelCaseResourceName %> = await repository.findOne({ 
-      where: { domain: context.domain, name }
+      where: { domain: context.state.domain, name }
     })
 
     return await repository.save({
