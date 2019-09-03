@@ -6,6 +6,7 @@
 const Generator = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
+const _ = require('lodash')
 
 module.exports = class extends Generator {
   prompting() {
@@ -28,6 +29,10 @@ module.exports = class extends Generator {
 
     return this.prompt(prompts).then(props => {
       this.props = props
+      this.props.moduleName = props.appName
+      this.props.camelCaseModuleName = _.camelCase(props.appName)
+      this.props.upperSnakeCaseModuleName = _.snakeCase(props.appName).toUpperCase()
+      this.props.classifiedModuleName = _.upperFirst(_.camelCase(props.appName))
     })
   }
 
