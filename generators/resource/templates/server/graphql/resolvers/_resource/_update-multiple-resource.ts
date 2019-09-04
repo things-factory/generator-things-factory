@@ -14,10 +14,10 @@ export const updateMultiple<%= classifiedResourceName %> = {
             }
       
               const result = await <%= camelCaseResourceName %>Repo.save({
+                ...newRecord,
                 domain: context.state.domain,
                 creator: context.state.user,
                 updater: context.state.user,
-                ...newRecord
               })
       
               results.push({ ...result, cuFlag: '+' })
