@@ -1,17 +1,14 @@
-import { buildQuery, ListParam } from '@things-factory/shell'
+import { ListParam, convertListParams } from '@things-factory/shell'
 import { getRepository } from 'typeorm'
 import { <%= classifiedResourceName %> } from '../../../entities'
 
 export const <%= pluralCamelCaseResourceName %>Resolver = {
   async <%= pluralCamelCaseResourceName %>(_: any, params: ListParam, context: any) {
-    const queryBuilder = getRepository(<%= classifiedResourceName %>).createQueryBuilder()
-    buildQuery(queryBuilder, params, context)
-    const [items, total] = await queryBuilder
-      .leftJoinAndSelect('<%= classifiedResourceName %>.domain', 'Domain')
-      .leftJoinAndSelect('<%= classifiedResourceName %>.creator', 'Creator')
-      .leftJoinAndSelect('<%= classifiedResourceName %>.updater', 'Updater')
-      .getManyAndCount()
-
+    const convertedParams = convertListParams(params)
+    const [items, total] = await getRepository(<%= classifiedResourceName %>).findAndCount({
+      ...convertedParams,
+      relations: ['domain', 'creator', 'updater']
+    })
     return { items, total }
   }
 }

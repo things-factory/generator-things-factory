@@ -13,8 +13,16 @@ export const Mutation = `
     patch: <%= classifiedResourceName %>Patch!
   ): <%= classifiedResourceName %>
 
+  updateMultiple<%= classifiedResourceName %> (
+    patches: [<%= classifiedResourceName %>Patch]!
+  ): [<%= classifiedResourceName %>]
+
   delete<%= classifiedResourceName %> (
     name: String!
+  ): Boolean
+
+  delete<%= pluralClassifiedResourceName %> (
+    names: [String]!
   ): Boolean
 `
 

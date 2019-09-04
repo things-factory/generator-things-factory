@@ -39,6 +39,7 @@ module.exports = class extends Generator {
       this.props.pluralCamelCaseResourceName = _.camelCase(props.pluralResourceName)
       this.props.upperSnakeCaseResourceName = _.snakeCase(props.resourceName).toUpperCase()
       this.props.classifiedResourceName = _.upperFirst(_.camelCase(props.resourceName))
+      this.props.pluralClassifiedResourceName = pluralize(_.upperFirst(_.camelCase(props.resourceName)))
       this.props.timestamped = String(Date.now())
     })
   }
@@ -67,6 +68,12 @@ module.exports = class extends Generator {
     )
 
     this.fs.copyTpl(
+      this.templatePath('server/graphql/resolvers/_resource/_delete-resources.ts'),
+      this.destinationPath('server/graphql/resolvers/' + resourceName + '/delete-' + pluralResourceName + '.ts'),
+      this.props
+    )
+
+    this.fs.copyTpl(
       this.templatePath('server/graphql/resolvers/_resource/_resource.ts'),
       this.destinationPath('server/graphql/resolvers/' + resourceName + '/' + resourceName + '.ts'),
       this.props
@@ -81,6 +88,12 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('server/graphql/resolvers/_resource/_update-resource.ts'),
       this.destinationPath('server/graphql/resolvers/' + resourceName + '/update-' + resourceName + '.ts'),
+      this.props
+    )
+
+    this.fs.copyTpl(
+      this.templatePath('server/graphql/resolvers/_resource/_update-multiple-resource.ts'),
+      this.destinationPath('server/graphql/resolvers/' + resourceName + '/update-multiple' + resourceName + '.ts'),
       this.props
     )
 

@@ -6,5 +6,9 @@ export const <%= classifiedResourceName %> = gql`
     name: String
     domain: Domain
     description: String
+    updater: User
+    creator: User
+    updatedAt: String
+    createdAt: String
   }
 `
