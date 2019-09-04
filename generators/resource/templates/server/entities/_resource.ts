@@ -2,7 +2,7 @@ import { CreateDateColumn, UpdateDateColumn, Entity, Index, Column, OneToMany, M
 import { Domain } from '@things-factory/shell'
 import { User } from '@things-factory/auth-base'
 
-@Entity('<%= pluralResourceName %>')
+@Entity()
 @Index('ix_<%= resourceName %>_0', (<%= camelCaseResourceName %>: <%= classifiedResourceName %>) => [<%= camelCaseResourceName %>.domain, <%= camelCaseResourceName %>.name], { unique: true })
 export class <%= classifiedResourceName %> {
   @PrimaryGeneratedColumn('uuid')
