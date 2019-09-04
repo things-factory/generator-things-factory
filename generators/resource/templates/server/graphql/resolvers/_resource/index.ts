@@ -16,6 +16,6 @@ export const Mutation = {
   ...update<%= classifiedResourceName %>,
   ...updateMultiple<%= classifiedResourceName %>,
   ...create<%= classifiedResourceName %>,
-  ...delete<%= classifiedResourceName %>
+  ...delete<%= classifiedResourceName %>,
   ...delete<%= pluralClassifiedResourceName %>
 }

@@ -93,7 +93,7 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(
       this.templatePath('server/graphql/resolvers/_resource/_update-multiple-resource.ts'),
-      this.destinationPath('server/graphql/resolvers/' + resourceName + '/update-multiple' + resourceName + '.ts'),
+      this.destinationPath('server/graphql/resolvers/' + resourceName + '/update-multiple-' + resourceName + '.ts'),
       this.props
     )
 
