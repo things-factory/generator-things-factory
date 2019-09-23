@@ -53,19 +53,19 @@ class <%= classifiedPageName %> extends connect(store)(PageView) {
    * - initialized : initialized state of this page
    * 
    * you can update lifecycle values, or add custom values
-   * by this.pageUpdate({ ...values }, force)
+   * by calling this.pageUpdate({ ...values }, force)
    * If lifecycle values changed by this.pageUpdate(...),
    * this.pageUpdated(...) will be called back right after.
    * If you want to invoke this.pageUpdated(...) callback,
    * set force argument to true.
    * 
    * you can re-initialize this page
-   * by this.pageReset().
+   * by calling this.pageReset().
    * this.pageInitialized(...) followed by this.pageDispose(...) will be invoked 
-   * by this.pageReset().
+   * by calling this.pageReset().
    * 
    * you can invoke this.pageDisposed()
-   * by this.pageDispose()
+   * by calling this.pageDispose()
    */
 
   pageInitialized(lifecycle) {
@@ -99,6 +99,7 @@ class <%= classifiedPageName %> extends connect(store)(PageView) {
      * - called just before (re)pageInitialized
      * - called right after when i18next resource updated (loaded, changed, ..)
      * - called right after this.pageReset()
+     * - called right after this.pageDispose()
      */
   }
 }
