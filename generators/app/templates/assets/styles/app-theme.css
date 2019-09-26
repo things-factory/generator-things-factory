@@ -169,6 +169,9 @@ body {
   --input-field-font: normal 14px var(--theme-font);
   --form-grid-gap: 12px 5px;
 
+  --custom-input-barcode-field-font: normal 18px var(--theme-font);
+  --custom-input-barcode-field-padding: 2px 2px 2px 9px;
+
   --search-panel-background-color: rgba(0, 0, 0, 0.1);
   --search-panel-search-iconbutton-size: var(--icon-default-size);
   --search-form-icon-color: var(--primary-color);
@@ -292,9 +295,27 @@ body {
 
   --card-list-template: repeat(3, minmax(auto, 100%));
   --card-list-rows-height: 200px;
+  --card-list-background-color: rgba(0, 0, 0, 0.07);
+  --card-list-border-radius: var(--border-radius);
+  --card-list-flip-transform: rotateX(180deg);
+  --card-list-create-border: 1px dashed var(--primary-color);
+  --card-list-create-border-radius: var(--border-radius);
+  --card-list-create-icon-color: var(--primary-color);
+  --card-list-create-color: var(--secondary-color);
+  --card-list-create-form-padding: 15px;
+  --card-list-create-label-font: var(--label-font);
+  --card-list-create-label-color: var(--secondary-color);
+  --card-list-create-input-font: var(--input-field-font);
+  --card-list-create-input-color: var();
+  --card-list-create-input-border: var(--input-field-border);
+  --card-list-create-input-border-radius: var(--input-field-border-radius);
+  --card-list-create-input-padding: var(--input-field-padding);
+  --card-list-create-margin: 0 0 7px 0;
+  --popup-content-background-color: var(--main-section-background-color);
+  --popup-content-padding: 10px 20px;
 
   /* board modeler page style */
-  --edit-toolbar-background-color: var(--primary-color);
+  --edit-toolbar-background-color: var(--secondary-text-color);
   --edit-toolbar-bigger-icon-size: 45px;
   --edit-toolbar-bigger-icon-line: 1px solid rgba(0, 0, 0, 0.1);
   --component-toolbar-background-color: var(--main-section-background-color);
@@ -333,8 +354,15 @@ body {
   --profile-brand-height: 45px;
   --profile-brand-padding: 30px auto 20px auto;
   --profile-wrap-max-width: 550px;
+  --profile-icon-margin: 7% 0 0 0;
+  --change-password-field-font: normal 16px var(--theme-font);
+  --change-password-field-border: 1px solid rgba(0, 0, 0, 0.2);
+  --change-password-field-border-radius: var(--border-radius);
+  --change-password-field-padding: 2px 9px;
+  --change-password-field-width: 100%;
 
   /* setting style */
+  --setting-background: var(--main-section-background-color);
   --setting-title-font: var(--subtitle-font);
   --setting-title-color: var(--subtitle-text-color);
   --setting-content-padding: 15px;
@@ -344,6 +372,21 @@ body {
   --setting-info-font: normal 14px/14px var(--theme-font);
   --setting-info-color: #666;
   --setting-info-appname-color: var(--primary-color);
+  --setting-icon-height: 170px;
+  --setting-icon-margin: 7% 0 5px 0;
+
+  /* system info style */
+  --system-info-background-color: var(--main-section-background-color);
+  --system-info-content-padding: 10vh 0 0 0;
+  --system-info-font: normal 14px/24px var(--theme-font);
+  --system-info-color: #666;
+  --system-info-appname-color: var(--secondary-color);
+  --system-info-appname-font: bold 20px/20px var(--theme-font);
+  --system-info-description-color: var(--primary-color);
+  --system-info-description-font: normal 15px/18px var(--theme-font);
+  --system-info-version-background-color: var(--secondary-color);
+  --system-info-version-color: #fff;
+  --system-info-version-font: normal 15px/15px var(--theme-font);
 }
 
 @media only screen and (max-width: 460px) {
@@ -378,10 +421,16 @@ body {
     --record-view-footer-iconbutton-margin: -2px;
     --record-view-footer-iconbutton-display: block;
 
+    --label-font: normal 15px var(--theme-font);
+    --input-field-font: normal 15px var(--theme-font);
+
     --profile-wrap-max-width: 85vw;
 
     --card-list-template: repeat(1, minmax(auto, 100%));
-    --card-list-rows-height: 240px;
+    --card-list-rows-height: 180px;
+
+    --change-password-field-width: 80%;
+    --change-password-field-font: normal 20px var(--theme-font);
   }
 }
 @media (min-width: 461px) and (max-width: 1024px) {
@@ -401,7 +450,19 @@ body {
     --overlay-center-large-width: 80%;
     --overlay-center-large-height: 80%;
 
+    --label-font: normal 15px var(--theme-font);
+    --input-field-font: normal 15px var(--theme-font);
+
     --card-list-template: repeat(2, minmax(auto, 100%));
-    --card-list-rows-height: 160px;
+    --card-list-rows-height: 150px;
+    --card-list-create-form-padding: 7px;
+
+    --change-password-field-width: 70%;
+    --change-password-field-font: normal 20px var(--theme-font);
+  }
+}
+@media only screen and (max-width: 925px) {
+  body {
+    --form-container-padding: 0 15px;
   }
 }
