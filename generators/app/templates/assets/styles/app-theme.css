@@ -154,6 +154,7 @@ body {
   --form-border: none;
   --form-margin: 15px auto;
   --form-max-width: 700px;
+  --form-multi-column-max-width: 100%;
   --form-sublabel-font: normal 13px var(--theme-font);
   --form-sublabel-color: var(--secondary-color);
   --legend-padding: var(--subtitle-padding);
@@ -184,7 +185,7 @@ body {
   /* datagrid style */
   --grist-background-color: var(--main-section-background-color);
   --grist-padding: 15px;
-  --grist-title-margin: 0 15px;
+  --grist-title-margin: 0;
   --grist-title-border: none;
   --grist-title-color: var(--secondary-color);
   --grist-title-icon-color: var(--primary-color);
@@ -204,6 +205,9 @@ body {
   --grid-record-focused-background-color: var(--primary-color);
   --grid-record-focused-color: #fff;
   --grid-record-focused-border: 1px dashed rgba(0, 0, 0, 0.5);
+  --grid-record-dirty-border-top: 24px solid #95d40f;
+  --grid-record-dirty-border-left: 24px solid transparent;
+  --grid-record-dirty-icon-font: bold 10px/12px var(--mdc-icon-font, 'Material Icons');
   --grid-footer-font-size: 0.9em;
   --grid-footer-color: #fff;
   --grid-footer-limit-color: rgba(255, 255, 255, 0.6);
@@ -252,6 +256,16 @@ body {
   --record-view-border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   --record-view-edit-border-bottom: 2px solid var(--primary-color);
   --record-view-item-padding: 5px;
+
+  --board-renderer-border: 1px solid rgba(0, 0, 0, 0.1);
+  --board-renderer-max-width: 120px;
+  --board-renderer-name-background-color: rgba(1, 126, 127, 0.8);
+  --board-renderer-name-font: normal 13px var(--theme-font);
+  --board-renderer-icon-size: 24px;
+  --board-renderer-icon-border-radius: 10px;
+  --board-renderer-font: bold 16px/25px var(--mdc-icon-font, 'Material Icons');
+  --board-renderer-icon-edit-background-color: #95d40f;
+  --board-renderer-icon-view-background-color: #27a1de;
 
   /* button style */
   --button-background-color: var(--secondary-color);
@@ -337,7 +351,7 @@ body {
 
   /* login page style*/
   --auth-background: var(--main-section-background-color);
-  --auth-brand-name: bold 48px/54px var(--theme-font);
+  --auth-brand-name: bold 36px/42px var(--theme-font);
   --auth-brand-welcome-msg: normal 16px/24px var(--theme-font);
   --auth-title-color: var(--secondary-color);
   --auth-title-font: bold 28px/36px var(--theme-font);
@@ -387,6 +401,18 @@ body {
   --system-info-version-background-color: var(--secondary-color);
   --system-info-version-color: #fff;
   --system-info-version-font: normal 15px/15px var(--theme-font);
+
+  /* oops note style */
+  --oops-note-icon-font: normal 32px var(--mdc-icon-font, 'Material Icons');
+  --oops-note-icon-color: rgba(91, 154, 186, 0.8);
+  --oops-note-icon-border: 4px solid rgba(91, 154, 186, 0.4);
+  --oops-note-icon-border-radius: 50px;
+  --oops-note-icon-padding: 10px;
+  --oops-note-title-margin: 12px 0 2px 0;
+  --oops-note-title-font: bold 16px var(--theme-font);
+  --oops-note-title-color: var(--secondary-color);
+  --oops-note-description-font: normal 13px var(--theme-font);
+  --oops-note-description-color: var(--primary-color);
 }
 
 @media only screen and (max-width: 460px) {
@@ -450,8 +476,12 @@ body {
     --overlay-center-large-width: 80%;
     --overlay-center-large-height: 80%;
 
-    --label-font: normal 15px var(--theme-font);
+    --form-margin: 15px 0;
+    --form-multi-column-max-width: 100%;
+    --form-container-padding: 0 9px;
+    --label-font: normal 14px var(--theme-font);
     --input-field-font: normal 15px var(--theme-font);
+    --input-field-padding: 3px 5px;
 
     --card-list-template: repeat(2, minmax(auto, 100%));
     --card-list-rows-height: 150px;
@@ -463,6 +493,9 @@ body {
 }
 @media only screen and (max-width: 925px) {
   body {
-    --form-container-padding: 0 15px;
+    --form-margin: 14px 0;
+    --form-multi-column-max-width: 100%;
+    --form-container-padding: 0 9px;
+    --input-field-padding: 3px 5px;
   }
 }
