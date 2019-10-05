@@ -2,6 +2,7 @@ dist-client/
 dist-server/
 node_modules/
 licenses/
+attachments/
 ormconfig.js
 yarn*.*
 package-lock.json
