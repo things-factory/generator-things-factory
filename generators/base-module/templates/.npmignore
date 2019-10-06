@@ -1,6 +1,9 @@
 node_modules/
 dist-client/
+licenses/
+attachments/
 .git
 .vscode
 .editorconfig
 .prettierrc
+ormconfig.js
