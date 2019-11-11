@@ -11,16 +11,16 @@ export const updateMultiple<%= classifiedResourceName %> = {
         if (_createRecords.length > 0) {
             for (let i = 0; i < _createRecords.length; i++) {
               const newRecord = _createRecords[i]
-            }
-      
+              
               const result = await <%= camelCaseResourceName %>Repo.save({
                 ...newRecord,
                 domain: context.state.domain,
                 creator: context.state.user,
                 updater: context.state.user,
               })
-      
+              
               results.push({ ...result, cuFlag: '+' })
+            }
         }
 
         if (_updateRecords.length > 0) {
