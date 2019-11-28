@@ -5,7 +5,7 @@
     <title>Things Factory App</title>
     <meta name="generator" content="Things Factory Starter Kit" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Things Factory description" />
+    <meta name="description" content="Reimagining Software" />
 
     <base href="/" />
 
@@ -37,7 +37,7 @@
     <link rel="apple-touch-icon" sizes="192x192" href="/assets/manifest/icon-192x192.png" />
 
     <!-- Tile icon for Windows 8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="assets/manifest/icon-144x144.png" />
+    <meta name="msapplication-TileImage" content="/assets/manifest/icon-144x144.png" />
     <meta name="msapplication-TileColor" content="#3f51b5" />
     <meta name="msapplication-tap-highlight" content="no" />
 
@@ -45,8 +45,8 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@username" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="things-app" />
-    <meta property="og:image" content="assets/manifest/icon-144x144.png" />
+    <meta property="og:site_name" content="things-factory, Reimagining Software." />
+    <meta property="og:image" content="/assets/manifest/image-metaog.png" />
 
     <!-- Performance tip: hint to the browser to start the handshake for the fonts site -->
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
@@ -58,9 +58,45 @@
       // Load and register pre-caching Service Worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/service-worker.js', {
-            scope: '/'
-          })
+          navigator.serviceWorker
+            .register('/service-worker.js', {
+              scope: '/'
+            })
+            .then(registration => {
+              console.log('SW registered: ', registration)
+              return registration.pushManager.getSubscription()
+            })
+            .then(subscription => {
+              if (subscription) {
+                console.log('Already subscribed', subscription.endpoint)
+              }
+            })
+        })
+
+        navigator.serviceWorker.addEventListener('message', function(e) {
+          if (!e.data) return
+
+          switch (e.data) {
+            case 'show-reload-snackbar':
+              document.dispatchEvent(
+                new CustomEvent('notify', {
+                  composed: true,
+                  bubbles: true,
+                  detail: {
+                    level: 'info',
+                    message: 'The application has been updated.', // 응용 프로그램이 업데이트되었습니다.
+                    option: {
+                      action: {
+                        label: 'reload',
+                        callback: () => window.location.reload()
+                      },
+                      timer: -1
+                    }
+                  }
+                })
+              )
+              break
+          }
         })
       }
 
@@ -94,86 +130,6 @@
     <script src="node_modules/@hatiolab/things-scene/things-scene-min.js"></script>
     <!-- Built with love using PWA Starter Kit -->
 
-    <script src="licenses/things-lic.js"></script>
-
-    <script>
-      function urlBase64ToUint8Array(base64String) {
-        var padding = '='.repeat((4 - (base64String.length % 4)) % 4)
-        var base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/')
-
-        var rawData = window.atob(base64)
-        var outputArray = new Uint8Array(rawData.length)
-
-        for (var i = 0; i < rawData.length; ++i) {
-          outputArray[i] = rawData.charCodeAt(i)
-        }
-        return outputArray
-      }
-
-      navigator.serviceWorker.ready
-        .then(function(registration) {
-          console.log('service worker registered')
-
-          return registration.pushManager.getSubscription()
-        })
-        .then(function(subscription) {
-          if (subscription) {
-            console.log('Already subscribed', subscription.endpoint)
-            // setUnsubscribeButton()
-            unsubscribe()
-          }
-          subscribe()
-        })
-
-      function subscribe() {
-        navigator.serviceWorker.ready
-          .then(async function(registration) {
-            const response = await fetch('./vapidPublicKey')
-            const vapidPublicKey = await response.text()
-
-            const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey)
-
-            return registration.pushManager.subscribe({
-              userVisibleOnly: true,
-              applicationServerKey: convertedVapidKey
-            })
-          })
-          .then(function(subscription) {
-            console.log('Subscribed', subscription.endpoint)
-            return fetch('register', {
-              method: 'post',
-              headers: {
-                'Content-type': 'application/json'
-              },
-              body: JSON.stringify({
-                subscription: subscription
-              })
-            })
-          })
-          .then(() => {})
-      }
-
-      function unsubscribe() {
-        navigator.serviceWorker.ready
-          .then(function(registration) {
-            return registration.pushManager.getSubscription()
-          })
-          .then(function(subscription) {
-            return subscription.unsubscribe().then(function() {
-              console.log('Unsubscribed', subscription.endpoint)
-              return fetch('unregister', {
-                method: 'post',
-                headers: {
-                  'Content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                  subscription: subscription
-                })
-              })
-            })
-          })
-          .then(() => {})
-      }
-    </script>
+    <script src="/licenses/things-lic.js"></script>
   </body>
 </html>
