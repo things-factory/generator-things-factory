@@ -7,8 +7,8 @@
   "license": "MIT",
   "author": "<%= username %>",
   "scripts": {
-    "serve": "things-factory",
-    "serve:dev": "npm run build:server && things-factory-dev",
+    "serve": "things-factory <%= appName %>",
+    "serve:dev": "npm run build:server && things-factory-dev <%= appName %>",
     "start:app": "things-factory-app",
     "start:app:android": "things-factory-app --platform=android",
     "emulate:app": "things-factory-app --emulate",
@@ -25,7 +25,9 @@
     "migration:create": "node ./node_modules/typeorm/cli.js migration:create",
     "migration:generate": "node ./node_modules/typeorm/cli.js migration:generate",
     "migration:run": "node ./node_modules/typeorm/cli.js migration:run",
-    "migration:revert": "node ./node_modules/typeorm/cli.js migration:revert"
+    "migration:revert": "node ./node_modules/typeorm/cli.js migration:revert",
+    "stop:dev": "kill $(lsof -t -i:3000,3001)",
+    "stop": "things-factory-stop <%= appName %>"
   },
   "dependencies": {
     "@things-factory/shell": "*"
