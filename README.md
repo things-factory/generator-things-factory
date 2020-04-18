@@ -26,7 +26,7 @@ yo things-factory:base-module
 To generate your new things-factory ui-module project:
 
 ```bash
-yo things-factory:base-module
+yo things-factory:ui-module
 ```
 
 To generate your new things-factory resource:
