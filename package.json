@@ -17,15 +17,15 @@
     "yeoman-generator"
   ],
   "devDependencies": {
-    "eslint": "^5.9.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-config-xo": "^0.26.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-config-xo": "^0.29.1",
     "eslint-plugin-prettier": "^3.1.0",
-    "husky": "^2.4.0",
-    "jest": "^24.8.0",
-    "lint-staged": "^8.2.0",
+    "husky": "^4.2.5",
+    "jest": "^25.3.0",
+    "lint-staged": "^10.1.4",
     "lodash": "^4.17.11",
-    "prettier": "^1.17.1",
+    "prettier": "^2.0.4",
     "yeoman-assert": "^3.1.0",
     "yeoman-test": "^2.0.0"
   },
@@ -38,7 +38,7 @@
     "babel-traverse": "^6.26.0",
     "babel-types": "^6.26.0",
     "babylon": "^6.18.0",
-    "chalk": "^2.1.0",
+    "chalk": "^4.0.0",
     "pluralize": "^8.0.0",
     "yeoman-generator": "^4.0.1",
     "yosay": "^2.0.1"
