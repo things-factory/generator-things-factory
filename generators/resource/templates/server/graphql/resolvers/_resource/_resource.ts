@@ -5,7 +5,7 @@ export const <%= camelCaseResourceName %>Resolver = {
   async <%= camelCaseResourceName %>(_: any, { name }, context: any) {
     const repository = getRepository(<%= classifiedResourceName %>)
 
-    return await getRepository(<%= classifiedResourceName %>).findOne({
+    return await repository.findOne({
       where: { domain: context.state.domain, name }, 
       relations: ['domain', 'creator', 'updater']
     })
