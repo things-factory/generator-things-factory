@@ -12,28 +12,26 @@ const SEED = [
 export class Seed<%= classifiedResourceName %><%= timestamped %> implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
     const repository = getRepository(<%= classifiedResourceName %>)
-    const domainRepository = getRepository(Domain)
-    const domain = await domainRepository.findOne({
+    const domain: Domain = await getRepository(Domain).findOne({
       name: 'SYSTEM'
     })
 
-    try {
-      SEED.forEach(async <%= camelCaseResourceName %> => {
-        await repository.save({
-          ...<%= camelCaseResourceName %>,
-          domain
-        })
+    return Promise.all(SEED.map(async <%= camelCaseResourceName %> => {
+      await repository.save({
+        ...<%= camelCaseResourceName %>,
+        domain
       })
-    } catch (e) {
-      console.error(e)
-    }
+    }))
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
     const repository = getRepository(<%= classifiedResourceName %>)
-    SEED.reverse().forEach(async <%= camelCaseResourceName %> => {
-      let record = await repository.findOne({ name: <%= camelCaseResourceName %>.name })
-      await repository.remove(record)
+    const domain: Domain = await getRepository(Domain).findOne({
+      name: 'SYSTEM'
     })
+
+    return Promise.all(SEED.reverse().map(async <%= camelCaseResourceName %> => {
+      await repository.delete({ name: <%= camelCaseResourceName %>.name })
+    }))
   }
 }
