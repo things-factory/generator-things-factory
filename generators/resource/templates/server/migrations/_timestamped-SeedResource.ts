@@ -31,7 +31,7 @@ export class Seed<%= classifiedResourceName %><%= timestamped %> implements Migr
     })
 
     return Promise.all(SEED.reverse().map(async <%= camelCaseResourceName %> => {
-      await repository.delete({ name: <%= camelCaseResourceName %>.name })
+      await repository.delete({ name: <%= camelCaseResourceName %>.name, domain })
     }))
   }
 }
